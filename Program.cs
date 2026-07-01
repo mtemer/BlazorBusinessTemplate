@@ -2,6 +2,7 @@ using BlazorBusinessTemplate.Components;
 using BlazorBusinessTemplate.Configuration;
 using BlazorBusinessTemplate.Services;
 using BlazorBusinessTemplate.Extensions;
+using BlazorBusinessTemplate.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder.Services.AddSqliteDatabase<AppDbContext>(
+    ApplicationDefaults.ConnectionString);
 
 builder.Services.AddMTBusinessFramework();
 
