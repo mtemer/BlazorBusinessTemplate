@@ -1,4 +1,4 @@
-﻿namespace BlazorBusinessTemplate.Infrastructure;
+﻿namespace BlazorBusinessTemplate.Configuration;
 
 /// <summary>
 /// Contains public application identity information displayed in the UI and documentation.

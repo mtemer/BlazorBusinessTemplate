@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 namespace BlazorBusinessTemplate.Core;
 
 /// <summary>
-/// Provides common argument validation methods.
+/// Guard radi samo validaciju argumenata.
 /// </summary>
 public static class Guard
 {

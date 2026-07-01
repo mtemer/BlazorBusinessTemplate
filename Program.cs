@@ -1,5 +1,5 @@
 using BlazorBusinessTemplate.Components;
-using BlazorBusinessTemplate.Infrastructure;
+using BlazorBusinessTemplate.Configuration;
 using BlazorBusinessTemplate.Services;
 using BlazorBusinessTemplate.Extensions;
 

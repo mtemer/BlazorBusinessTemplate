@@ -1,5 +1,5 @@
 ﻿using System.Text.Json;
-using BlazorBusinessTemplate.Infrastructure;
+using BlazorBusinessTemplate.Configuration;
 using BlazorBusinessTemplate.Models;
 using Microsoft.JSInterop;
 

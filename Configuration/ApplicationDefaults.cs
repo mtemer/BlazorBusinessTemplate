@@ -1,4 +1,4 @@
-﻿namespace BlazorBusinessTemplate.Infrastructure;
+﻿namespace BlazorBusinessTemplate.Configuration;
 
 /// <summary>
 /// Contains default values used throughout the application.

@@ -16,6 +16,7 @@ public static class ServiceCollectionExtensions
     {
         services.AddSingleton<BrowserLauncherService>();
         services.AddScoped<SettingsService>();
+        services.AddScoped<LocalStorageService>();
 
         return services;
     }

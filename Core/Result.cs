@@ -1,7 +1,7 @@
 ﻿namespace BlazorBusinessTemplate.Core;
 
 /// <summary>
-/// Represents the result of an operation.
+/// Result predstavlja samo ishod operacije.
 /// </summary>
 public class Result
 {
