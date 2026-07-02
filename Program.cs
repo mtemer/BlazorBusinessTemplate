@@ -1,8 +1,9 @@
 using BlazorBusinessTemplate.Components;
 using BlazorBusinessTemplate.Configuration;
-using BlazorBusinessTemplate.Services;
-using BlazorBusinessTemplate.Extensions;
+using BlazorBusinessTemplate.Core.Abstractions;
 using BlazorBusinessTemplate.Data;
+using BlazorBusinessTemplate.Extensions;
+using BlazorBusinessTemplate.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,6 +43,14 @@ if (!app.Environment.IsDevelopment())
     browserLauncher.Open(
         ApplicationDefaults.DefaultUrl,
         ApplicationDefaults.BrowserLaunchDelay);
+}
+
+using (var scope = app.Services.CreateScope())
+{
+    var databaseService =
+        scope.ServiceProvider.GetRequiredService<IDatabaseService>();
+
+    await databaseService.MigrateAsync();
 }
 
 // ---------------------------------------------------------
