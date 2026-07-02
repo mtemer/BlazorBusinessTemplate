@@ -14,10 +14,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+builder.Services.AddMTBusinessFramework();
+
 builder.Services.AddSqliteDatabase<AppDbContext>(
     ApplicationDefaults.ConnectionString);
-
-builder.Services.AddMTBusinessFramework();
 
 // ---------------------------------------------------------
 // Build
@@ -32,6 +32,18 @@ var app = builder.Build();
 app.UseMTBusinessFramework();
 
 // ---------------------------------------------------------
+// Database
+// ---------------------------------------------------------
+
+using (var scope = app.Services.CreateScope())
+{
+    var databaseService =
+        scope.ServiceProvider.GetRequiredService<IDatabaseService>();
+
+    await databaseService.MigrateAsync();
+}
+
+// ---------------------------------------------------------
 // Desktop launcher
 // ---------------------------------------------------------
 
@@ -43,14 +55,6 @@ if (!app.Environment.IsDevelopment())
     browserLauncher.Open(
         ApplicationDefaults.DefaultUrl,
         ApplicationDefaults.BrowserLaunchDelay);
-}
-
-using (var scope = app.Services.CreateScope())
-{
-    var databaseService =
-        scope.ServiceProvider.GetRequiredService<IDatabaseService>();
-
-    await databaseService.MigrateAsync();
 }
 
 // ---------------------------------------------------------

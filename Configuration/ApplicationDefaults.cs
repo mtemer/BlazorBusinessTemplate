@@ -1,44 +1,28 @@
-﻿namespace BlazorBusinessTemplate.Configuration;
-
-/// <summary>
-/// Contains default values used throughout the application.
-/// Centralizing these values avoids magic strings and simplifies maintenance.
-/// </summary>
-public static class ApplicationDefaults
+﻿public static class ApplicationDefaults
 {
-    // ---------------------------------------------------------
-    // Application
-    // ---------------------------------------------------------
-
-    public const string FrameworkName = "MT Business Framework";
-    public const string FrameworkVersion = "1.0.0";
-
-    // ---------------------------------------------------------
     // Database
-    // ---------------------------------------------------------
 
-    public const string DatabaseFile = "app.db";
+    public const string DatabaseFolder = "Data";
+
+    public const string DatabaseFile = "Business.db";
+
+    public static string DatabasePath =>
+        Path.Combine(DatabaseFolder, DatabaseFile);
 
     public static string ConnectionString =>
-        $"Data Source={DatabaseFile}";
+        $"Data Source={DatabasePath}";
 
-    // ---------------------------------------------------------
     // Browser
-    // ---------------------------------------------------------
 
     public const string DefaultUrl = "http://localhost:5000";
 
     public const int BrowserLaunchDelay = 1500;
 
-    // ---------------------------------------------------------
     // Backup
-    // ---------------------------------------------------------
 
-    public const string BackupFolder = "Backups";
+    public const string BackupFolder = "Backup";
 
-    // ---------------------------------------------------------
     // Settings
-    // ---------------------------------------------------------
 
     public const string LocalStorageKey = "MTBusinessSettings";
 }

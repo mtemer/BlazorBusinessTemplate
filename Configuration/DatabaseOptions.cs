@@ -6,14 +6,9 @@
 public sealed class DatabaseOptions
 {
     /// <summary>
-    /// Gets or sets the SQLite connection string.
+    /// Gets or sets the SQLite database file path.
     /// </summary>
-    public string ConnectionString { get; set; } = string.Empty;
-
-    /// <summary>
-    /// Gets or sets the database file name.
-    /// </summary>
-    public string DatabaseFile { get; set; } = string.Empty;
+    public string DatabasePath { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets the backup folder.
