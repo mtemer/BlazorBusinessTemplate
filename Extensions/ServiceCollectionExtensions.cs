@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace BlazorBusinessTemplate.Extensions;
 
+
 /// <summary>
 /// Registers MT Business Framework services.
 /// </summary>
@@ -17,6 +18,7 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<BrowserLauncherService>();
         services.AddScoped<SettingsService>();
         services.AddScoped<LocalStorageService>();
+        services.AddSingleton<FileSystemService>();
 
         return services;
     }

@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BlazorBusinessTemplate.Core.Abstractions;
+using BlazorBusinessTemplate.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BlazorBusinessTemplate.Extensions;
@@ -9,7 +11,7 @@ namespace BlazorBusinessTemplate.Extensions;
 public static class DatabaseExtensions
 {
     /// <summary>
-    /// Registers a SQLite database context factory.
+    /// Registers a SQLite database context factory and database service.
     /// </summary>
     public static IServiceCollection AddSqliteDatabase<TContext>(
         this IServiceCollection services,
@@ -18,6 +20,8 @@ public static class DatabaseExtensions
     {
         services.AddDbContextFactory<TContext>(options =>
             options.UseSqlite(connectionString));
+
+        services.AddScoped<IDatabaseService, DatabaseService<TContext>>();
 
         return services;
     }
