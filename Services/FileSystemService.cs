@@ -56,4 +56,79 @@ public sealed class FileSystemService
 
         return File.GetLastWriteTime(path);
     }
+
+    /// <summary>
+    /// Copies a file.
+    /// </summary>
+    public void CopyFile(
+        string sourceFile,
+        string destinationFile,
+        bool overwrite = true)
+    {
+        Guard.NotNullOrWhiteSpace(sourceFile);
+        Guard.NotNullOrWhiteSpace(destinationFile);
+
+        File.Copy(sourceFile, destinationFile, overwrite);
+    }
+
+    /// <summary>
+    /// Deletes a file if it exists.
+    /// </summary>
+    public void DeleteFile(string path)
+    {
+        Guard.NotNullOrWhiteSpace(path);
+
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+        }
+    }
+
+    /// <summary>
+    /// Moves a file.
+    /// </summary>
+    public void MoveFile(
+        string sourceFile,
+        string destinationFile,
+        bool overwrite = true)
+    {
+        Guard.NotNullOrWhiteSpace(sourceFile);
+        Guard.NotNullOrWhiteSpace(destinationFile);
+
+        if (overwrite && File.Exists(destinationFile))
+        {
+            File.Delete(destinationFile);
+        }
+
+        File.Move(sourceFile, destinationFile);
+    }
+
+    /// <summary>
+    /// Returns all files from a directory.
+    /// </summary>
+    public string[] GetFiles(
+        string path,
+        string searchPattern = "*.*")
+    {
+        Guard.NotNullOrWhiteSpace(path);
+
+        return Directory.GetFiles(path, searchPattern);
+    }
+
+    /// <summary>
+    /// Returns the file name from a path.
+    /// </summary>
+    public string GetFileName(string path)
+    {
+        Guard.NotNullOrWhiteSpace(path);
+
+        return Path.GetFileName(path);
+    }
+
+    public string Combine(params string[] paths)
+    {
+        Guard.NotNull(paths);
+
+        return Path.Combine(paths);
+    }
 }

@@ -1,4 +1,5 @@
-﻿using BlazorBusinessTemplate.Services;
+﻿using BlazorBusinessTemplate.Core.Abstractions;
+using BlazorBusinessTemplate.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BlazorBusinessTemplate.Extensions;
@@ -19,6 +20,8 @@ public static class ServiceCollectionExtensions
         services.AddScoped<SettingsService>();
         services.AddScoped<LocalStorageService>();
         services.AddSingleton<FileSystemService>();
+
+        services.AddScoped<IBackupService, BackupService>();
 
         return services;
     }
