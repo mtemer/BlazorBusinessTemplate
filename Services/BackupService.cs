@@ -10,13 +10,16 @@ public sealed class BackupService : IBackupService
 {
     private readonly FileSystemService _files;
 
-    public BackupService(
-        FileSystemService files)
+    /// <summary>
+    /// Creates a new backup service.
+    /// </summary>
+    public BackupService(FileSystemService files)
     {
         _files = files;
     }
 
-    public Task BackupFileAsync(
+    /// <inheritdoc />
+    public Task<string> BackupFileAsync(
         string sourceFile,
         string destinationFolder)
     {
@@ -25,18 +28,19 @@ public sealed class BackupService : IBackupService
 
         _files.EnsureDirectory(destinationFolder);
 
-        var backupFile =
-            Path.Combine(
-                destinationFolder,
-                $"{Path.GetFileNameWithoutExtension(sourceFile)}_" +
-                $"{DateTime.Now:yyyyMMdd_HHmmss}" +
-                $"{Path.GetExtension(sourceFile)}");
+        var backupFile = _files.Combine(
+            destinationFolder,
+            $"{Path.GetFileNameWithoutExtension(sourceFile)}_{DateTime.Now:yyyyMMdd_HHmmss}{Path.GetExtension(sourceFile)}");
 
-        File.Copy(sourceFile, backupFile, true);
+        _files.CopyFile(
+            sourceFile,
+            backupFile,
+            overwrite: true);
 
-        return Task.CompletedTask;
+        return Task.FromResult(backupFile);
     }
 
+    /// <inheritdoc />
     public Task RestoreFileAsync(
         string backupFile,
         string destinationFile)
@@ -44,7 +48,10 @@ public sealed class BackupService : IBackupService
         Guard.NotNullOrWhiteSpace(backupFile);
         Guard.NotNullOrWhiteSpace(destinationFile);
 
-        File.Copy(backupFile, destinationFile, true);
+        _files.CopyFile(
+            backupFile,
+            destinationFile,
+            overwrite: true);
 
         return Task.CompletedTask;
     }

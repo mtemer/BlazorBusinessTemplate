@@ -1,19 +1,19 @@
 ﻿namespace BlazorBusinessTemplate.Core.Abstractions;
 
 /// <summary>
-/// Provides backup operations for files.
+/// Provides backup operations.
 /// </summary>
 public interface IBackupService
 {
     /// <summary>
-    /// Creates a backup of the specified file.
+    /// Creates a timestamped backup copy of a file.
     /// </summary>
-    Task BackupFileAsync(
+    Task<string> BackupFileAsync(
         string sourceFile,
         string destinationFolder);
 
     /// <summary>
-    /// Restores a file from a backup.
+    /// Restores a file from backup.
     /// </summary>
     Task RestoreFileAsync(
         string backupFile,
