@@ -1,8 +1,9 @@
 using BlazorBusinessTemplate.Components;
 using BlazorBusinessTemplate.Configuration;
 using BlazorBusinessTemplate.Core.Abstractions;
-using BlazorBusinessTemplate.Data;
 using BlazorBusinessTemplate.Extensions;
+using BlazorBusinessTemplate.Samples.Todo.Configuration;
+using BlazorBusinessTemplate.Samples.Todo.Data;
 using BlazorBusinessTemplate.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,8 +17,8 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddMTBusinessFramework();
 
-builder.Services.AddSqliteDatabase<AppDbContext>(
-    ApplicationDefaults.ConnectionString);
+builder.Services.AddSqliteDatabase<TodoDbContext>(
+    TodoOptions.ConnectionString);
 
 // ---------------------------------------------------------
 // Build
@@ -37,14 +38,20 @@ app.UseMTBusinessFramework();
 
 using (var scope = app.Services.CreateScope())
 {
+    var fileSystem =
+        scope.ServiceProvider.GetRequiredService<FileSystemService>();
+
+    fileSystem.EnsureDirectory(
+        FrameworkDefaults.DatabaseFolder);
+
     var databaseService =
         scope.ServiceProvider.GetRequiredService<IDatabaseService>();
 
-    await databaseService.MigrateAsync();
+    await databaseService.EnsureCreatedAsync();
 }
 
 // ---------------------------------------------------------
-// Desktop launcher
+// Desktop browser launcher
 // ---------------------------------------------------------
 
 if (!app.Environment.IsDevelopment())
@@ -53,8 +60,8 @@ if (!app.Environment.IsDevelopment())
         app.Services.GetRequiredService<BrowserLauncherService>();
 
     browserLauncher.Open(
-        ApplicationDefaults.DefaultUrl,
-        ApplicationDefaults.BrowserLaunchDelay);
+        FrameworkDefaults.DefaultUrl,
+        FrameworkDefaults.BrowserLaunchDelay);
 }
 
 // ---------------------------------------------------------

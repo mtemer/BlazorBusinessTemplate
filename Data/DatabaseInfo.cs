@@ -1,4 +1,4 @@
-﻿namespace BlazorBusinessTemplate.Models;
+﻿namespace BlazorBusinessTemplate.Data;
 
 /// <summary>
 /// Represents database information.

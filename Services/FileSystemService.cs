@@ -131,4 +131,18 @@ public sealed class FileSystemService
 
         return Path.Combine(paths);
     }
+
+    public string GetFileNameWithoutExtension(string path)
+    {
+        Guard.NotNullOrWhiteSpace(path);
+
+        return Path.GetFileNameWithoutExtension(path);
+    }
+
+    public string GetExtension(string path)
+    {
+        Guard.NotNullOrWhiteSpace(path);
+
+        return Path.GetExtension(path);
+    }
 }

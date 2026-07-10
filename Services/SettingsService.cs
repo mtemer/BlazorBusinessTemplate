@@ -21,7 +21,7 @@ public sealed class SettingsService
     {
         var json = await _js.InvokeAsync<string>(
             "localStorage.getItem",
-            ApplicationDefaults.LocalStorageKey);
+            FrameworkDefaults.LocalStorageKey);
 
         if (string.IsNullOrWhiteSpace(json))
         {
@@ -45,7 +45,7 @@ public sealed class SettingsService
 
         await _js.InvokeVoidAsync(
             "localStorage.setItem",
-            ApplicationDefaults.LocalStorageKey,
+            FrameworkDefaults.LocalStorageKey,
             json);
     }
 
@@ -53,6 +53,6 @@ public sealed class SettingsService
     {
         await _js.InvokeVoidAsync(
             "localStorage.removeItem",
-            ApplicationDefaults.LocalStorageKey);
+            FrameworkDefaults.LocalStorageKey);
     }
 }

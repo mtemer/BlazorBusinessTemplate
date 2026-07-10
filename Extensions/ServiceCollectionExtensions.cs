@@ -20,6 +20,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<SettingsService>();
         services.AddScoped<LocalStorageService>();
         services.AddSingleton<FileSystemService>();
+        services.AddSingleton(TimeProvider.System);
 
         services.AddScoped<IBackupService, BackupService>();
 

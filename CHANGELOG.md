@@ -1,11 +1,19 @@
-﻿# Blazor Business Template
+﻿# Changelog
 
-## Version 1.0
+All notable changes to this project will be documented here.
+
+## [0.1.0] - Foundation
 
 ### Added
-- Initial project
-- SQLite support
-- Entity Framework Core
-- Git configuration
-- Publish Folder
-- 
+
+- Guard
+- Result
+- Result<T>
+- BusinessException
+- IEntity
+- Entity
+- AppDbContext
+- DatabaseService
+- FileSystemService
+- BackupService
+- SettingsService

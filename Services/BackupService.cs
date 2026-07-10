@@ -9,13 +9,15 @@ namespace BlazorBusinessTemplate.Services;
 public sealed class BackupService : IBackupService
 {
     private readonly FileSystemService _files;
+    private readonly TimeProvider _timeProvider;
 
     /// <summary>
     /// Creates a new backup service.
     /// </summary>
-    public BackupService(FileSystemService files)
+    public BackupService(FileSystemService files, TimeProvider timeProvider)
     {
         _files = files;
+        _timeProvider = timeProvider;
     }
 
     /// <inheritdoc />

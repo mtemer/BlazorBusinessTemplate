@@ -6,14 +6,19 @@ namespace BlazorBusinessTemplate.Data;
 /// Base application database context.
 /// Automatically manages audit fields on entities.
 /// </summary>
-public class AppDbContext : DbContext
+public abstract class AppDbContext : DbContext
 {
+    private readonly TimeProvider _timeProvider;
+
     /// <summary>
     /// Creates a new application database context.
     /// </summary>
-    public AppDbContext(DbContextOptions<AppDbContext> options)
+    protected AppDbContext(
+        DbContextOptions options,
+        TimeProvider timeProvider)
         : base(options)
     {
+        _timeProvider = timeProvider;
     }
 
     /// <inheritdoc />
@@ -35,7 +40,10 @@ public class AppDbContext : DbContext
 
     private void ApplyAuditFields()
     {
-        var now = DateTime.Now;
+        var now =
+            _timeProvider
+                .GetLocalNow()
+                .DateTime;
 
         foreach (var entry in ChangeTracker.Entries<Entity>())
         {
