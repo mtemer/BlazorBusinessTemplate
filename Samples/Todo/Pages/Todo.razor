@@ -1,5 +1,58 @@
-﻿<h3>Todo</h3>
+﻿@page "/todo"
+
+@using BlazorBusinessTemplate.Blazor.Components.Feedback
+
+<h3>Todo primjer</h3>
+
+@if (todos.Count == 0)
+{
+    <EmptyState>
+        <Icon>📝</Icon>
+
+        <Title>
+            Nema zadataka
+        </Title>
+
+        <Description>
+            Dodajte prvi zadatak kako biste započeli.
+        </Description>
+
+
+        <Actions>
+            <button type="button"
+                    class="btn btn-primary"
+                    @onclick="CreateTodo">
+                Novi zadatak
+            </button>
+        </Actions>
+    </EmptyState>
+}
+else
+{
+    <ul>
+        @foreach (var todo in todos)
+        {
+            <li>@todo</li>
+        }
+    </ul>
+
+    <button type="button"
+            class="btn btn-secondary"
+            @onclick="ClearTodos">
+        Izbriši sve
+    </button>
+}
 
 @code {
+    private readonly List<string> todos = [];
 
+    private void CreateTodo()
+    {
+        todos.Add($"Zadatak {todos.Count + 1}");
+    }
+
+    private void ClearTodos()
+    {
+        todos.Clear();
+    }
 }

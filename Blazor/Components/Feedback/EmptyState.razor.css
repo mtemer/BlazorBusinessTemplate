@@ -1,0 +1,31 @@
+﻿.mt-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+    border: 1px dashed #c8cdd2;
+    border-radius: 0.5rem;
+    background-color: #fafafa;
+}
+
+.mt-empty-state__icon {
+    margin-bottom: 0.75rem;
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.mt-empty-state__title {
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+.mt-empty-state__description {
+    margin-top: 0.4rem;
+    color: #6c757d;
+}
+
+.mt-empty-state__actions {
+    margin-top: 1rem;
+}

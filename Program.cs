@@ -1,4 +1,4 @@
-using BlazorBusinessTemplate.Components;
+using BlazorBusinessTemplate.Blazor;
 using BlazorBusinessTemplate.Configuration;
 using BlazorBusinessTemplate.Core.Abstractions;
 using BlazorBusinessTemplate.Extensions;

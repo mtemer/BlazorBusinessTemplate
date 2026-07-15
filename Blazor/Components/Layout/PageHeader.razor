@@ -1,0 +1,32 @@
+﻿<div class="mt-page-header">
+
+    @if (Title is not null)
+    {
+        <h1 class="mt-page-header__title">
+            @Title
+        </h1>
+    }
+
+    @if (Subtitle is not null)
+    {
+        <div class="mt-page-header__subtitle">
+            @Subtitle
+        </div>
+    }
+
+</div>
+
+@code
+{
+    /// <summary>
+    /// Gets or sets the page title.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? Title { get; set; }
+
+    /// <summary>
+    /// Gets or sets the page subtitle.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? Subtitle { get; set; }
+}

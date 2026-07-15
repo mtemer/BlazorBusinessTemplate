@@ -1,4 +1,5 @@
-﻿using BlazorBusinessTemplate.Components;
+﻿using BlazorBusinessTemplate.Blazor;
+using BlazorBusinessTemplate.Blazor.Components;
 using Microsoft.AspNetCore.Builder;
 
 namespace BlazorBusinessTemplate.Extensions;
